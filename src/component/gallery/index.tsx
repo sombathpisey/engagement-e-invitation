@@ -16,6 +16,9 @@ import image9 from "../../image/9.webp"
 import image10 from "../../image/10.webp"
 import image11 from "../../image/11.webp"
 import image12 from "../../image/12.webp"
+import image13 from "../../image/13.webp"
+import image14 from "../../image/14.webp"
+import image15 from "../../image/15.webp"
 
 const IMAGES = [
   image1,
@@ -29,6 +32,9 @@ const IMAGES = [
   image10,
   image11,
   image12,
+  image13,
+  image14,
+  image15,
 ]
 
 const CAROUSEL_ITEMS = IMAGES.map((item, idx) => (
