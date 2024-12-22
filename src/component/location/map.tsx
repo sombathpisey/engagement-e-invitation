@@ -10,7 +10,8 @@ const WEDDING_HALL_POSITION: [number, number] = [104.8379652, 11.4980323]
 const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/oBg3LpBHkQmJzJJq7?g_st=ifm"
 
 // Set Mapbox token
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN || ""
+mapboxgl.accessToken =
+  "pk.eyJ1IjoibGVlaG91ciIsImEiOiJjbHR0dmNicHkwemEzMnZvM3dtbmNxaXh6In0.SpqqrEydnugW6Vv1Su96Ug"
 
 const MapboxMap: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null)
