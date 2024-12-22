@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/engagement-e-invitation/static/css/main.97efea3c.css",
+    "main.js": "/engagement-e-invitation/static/js/main.f924915e.js",
+    "static/js/453.40063271.chunk.js": "/engagement-e-invitation/static/js/453.40063271.chunk.js",
+    "static/media/cover.webp": "/engagement-e-invitation/static/media/cover.ba23d5f063621b3abd5b.webp",
+    "static/media/8.webp": "/engagement-e-invitation/static/media/8.7a450525cda5e431f1eb.webp",
+    "static/media/location.webp": "/engagement-e-invitation/static/media/location.907728d51704183fb08e.webp",
+    "static/media/7.webp": "/engagement-e-invitation/static/media/7.c12f160d6d1ee311ac8a.webp",
+    "static/media/2.webp": "/engagement-e-invitation/static/media/2.4ca22e615d2655464ac9.webp",
+    "static/media/3.webp": "/engagement-e-invitation/static/media/3.90b6dba0cb71b951f231.webp",
+    "static/media/6.webp": "/engagement-e-invitation/static/media/6.ecf8acf899368f5ffcad.webp",
+    "static/media/4.webp": "/engagement-e-invitation/static/media/4.5ada067bfc3c53b33dd8.webp",
+    "static/media/10.webp": "/engagement-e-invitation/static/media/10.f40102b5097cb551d3aa.webp",
+    "static/media/12.webp": "/engagement-e-invitation/static/media/12.a11f6fe69126ae46d6bf.webp",
+    "static/media/11.webp": "/engagement-e-invitation/static/media/11.3d81e32c4209fa3ee374.webp",
+    "static/media/1.webp": "/engagement-e-invitation/static/media/1.e86b7c159978aa339480.webp",
+    "static/media/wedding_cover.jpeg": "/engagement-e-invitation/static/media/wedding_cover.1af526da0437bff76054.jpeg",
+    "static/media/9.webp": "/engagement-e-invitation/static/media/9.27a79ab3b0fe901c9391.webp",
+    "index.html": "/engagement-e-invitation/index.html",
+    "static/media/angle-left-sm.svg": "/engagement-e-invitation/static/media/angle-left-sm.658033af14cebbe2d43a80f11c7358ee.svg",
+    "main.97efea3c.css.map": "/engagement-e-invitation/static/css/main.97efea3c.css.map",
+    "main.f924915e.js.map": "/engagement-e-invitation/static/js/main.f924915e.js.map",
+    "453.40063271.chunk.js.map": "/engagement-e-invitation/static/js/453.40063271.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.97efea3c.css",
+    "static/js/main.f924915e.js"
+  ]
+}
