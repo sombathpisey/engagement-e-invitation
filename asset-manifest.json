@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/engagement-e-invitation/static/css/main.97efea3c.css",
-    "main.js": "/engagement-e-invitation/static/js/main.f924915e.js",
+    "main.css": "/engagement-e-invitation/static/css/main.2dd05e02.css",
+    "main.js": "/engagement-e-invitation/static/js/main.34e5eadc.js",
     "static/js/453.40063271.chunk.js": "/engagement-e-invitation/static/js/453.40063271.chunk.js",
     "static/media/cover.webp": "/engagement-e-invitation/static/media/cover.ba23d5f063621b3abd5b.webp",
     "static/media/8.webp": "/engagement-e-invitation/static/media/8.7a450525cda5e431f1eb.webp",
@@ -19,12 +19,12 @@
     "static/media/9.webp": "/engagement-e-invitation/static/media/9.27a79ab3b0fe901c9391.webp",
     "index.html": "/engagement-e-invitation/index.html",
     "static/media/angle-left-sm.svg": "/engagement-e-invitation/static/media/angle-left-sm.658033af14cebbe2d43a80f11c7358ee.svg",
-    "main.97efea3c.css.map": "/engagement-e-invitation/static/css/main.97efea3c.css.map",
-    "main.f924915e.js.map": "/engagement-e-invitation/static/js/main.f924915e.js.map",
+    "main.2dd05e02.css.map": "/engagement-e-invitation/static/css/main.2dd05e02.css.map",
+    "main.34e5eadc.js.map": "/engagement-e-invitation/static/js/main.34e5eadc.js.map",
     "453.40063271.chunk.js.map": "/engagement-e-invitation/static/js/453.40063271.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.97efea3c.css",
-    "static/js/main.f924915e.js"
+    "static/css/main.2dd05e02.css",
+    "static/js/main.34e5eadc.js"
   ]
 }
