@@ -1,5 +1,5 @@
 import { BRIDE, GROOM, WEDDING_DATE } from "../../const"
-import coverImage from "../../image/cover.png"
+import coverImage from "../../image/cover.webp"
 import { LazyDiv } from "../lazyDiv"
 
 const DAY_OF_WEEK = [

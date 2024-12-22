@@ -38,7 +38,8 @@ export const Calendar = () => {
     <LazyDiv className="card calendar">
       <h2 className="english">ថ្ងៃសិរីសួស្តីភ្ជាប់ពាក្យ</h2>
       <div className="break" />
-      {WEDDING_DATE.format("YYYY MMMM D, dddd A h:mm")}
+      {WEDDING_DATE.format("YYYY MMMM D, dddd h:mm")}
+      {WEDDING_DATE.format("A") === "AM" ? "AM" : ""}
       <div className="calendar-wrapper">
         <div className="head holiday">
           <span>Su</span>
@@ -110,7 +111,18 @@ export const Calendar = () => {
           <div className="count">{diffs.seconds}</div>
         </div>
         <div className="message">
-          ពិធីភ្ជាប់ពាក្យរបស់ គង់ វរៈសម្បត្តិ និង ស៊ឹម ពិសី នឹងប្រព្រឹត្តិទៅនៅ{" "}
+          ពិធីភ្ជាប់ពាក្យរបស់
+          <br />
+          <span style={{ color: "#c2a11d", fontWeight: "bold" }}>
+            {" "}
+            គង់ វរៈសម្បត្តិ{" "}
+          </span>
+          និង{" "}
+          <span style={{ color: "#c2a11d", fontWeight: "bold" }}>
+            ស៊ឹម ពិសី
+          </span>
+          <br />
+          នឹងប្រព្រឹត្តិទៅនៅ{" "}
           {dayDiff > 0 ? (
             <>
               <span

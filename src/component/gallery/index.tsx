@@ -390,7 +390,7 @@ export const Gallery = () => {
           openModal({
             className: "all-photo-modal",
             closeOnClickBackground: true,
-            header: <div className="title">View All Photos</div>,
+            header: <div className="title">បើកមើលរូបភាពទាំងអស់</div>,
             content: (
               <>
                 <div className="photo-list">
@@ -420,13 +420,13 @@ export const Gallery = () => {
                 className="bg-light-grey-color text-dark-color"
                 onClick={closeModal}
               >
-                닫기
+                បិទ
               </Button>
             ),
           })
         }
       >
-        View All Photos
+        បើកមើលរូបភាពទាំងអស់
       </Button>
     </LazyDiv>
   )

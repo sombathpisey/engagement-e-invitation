@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import "./App.scss"
 import { BGEffect } from "./component/bgEffect"
+import weddingCover from "./image/wedding_cover.jpeg"
 import { Cover } from "./component/cover"
 import { Invitation } from "./component/invitation"
 import { Calendar } from "./component/calendar"
 import { Gallery } from "./component/gallery"
 import { Location } from "./component/location"
-import { Information } from "./component/information"
-import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
-import { ShareButton } from "./component/shareButton"
-import weddingCover from "./image/wedding_cover.jpeg"
 
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isOpening, setIsOpening] = useState(false)
+  const [isFading, setIsFading] = useState(false)
 
   const handleOpenClick = () => {
     setIsOpening(true)
-    // Wait for the envelope opening animation to complete
+    // Trigger the fade-in animation
     setTimeout(() => {
-      setIsLoaded(true)
-    }, 2000)
+      setIsFading(true)
+      setTimeout(() => {
+        setIsLoaded(true)
+      }, 1000) // Match the duration of the fade-in animation
+    }, 2000) // Wait for the envelope animation to complete
   }
 
   return (
@@ -35,7 +36,7 @@ const App: React.FC = () => {
               <img
                 src={weddingCover}
                 alt="Wedding Invitation"
-                className="invitation-image"
+                className={`invitation-image ${isFading ? "fade-in" : ""}`}
               />
             </div>
           </div>
@@ -61,16 +62,9 @@ const App: React.FC = () => {
             <Gallery />
           </LazyDiv>
 
-          {/* <LazyDiv className="card-group">
+          <LazyDiv className="card-group">
             <Location />
           </LazyDiv>
-
-          <LazyDiv className="card-group">
-            <Information />
-            <GuestBook />
-          </LazyDiv> */}
-
-          {/* <ShareButton /> */}
         </div>
       )}
     </div>

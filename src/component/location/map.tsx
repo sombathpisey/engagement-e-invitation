@@ -1,173 +1,113 @@
-import { useEffect, useState, useRef } from "react"
-import { useKakao, useNaver } from "../../component/store"
+import { useEffect, useRef } from "react"
+import { useKakao } from "../../component/store"
+import mapboxgl from "mapbox-gl"
+import "mapbox-gl/dist/mapbox-gl.css"
 import nmapIcon from "../../image/nmap-icon.png"
 import knaviIcon from "../../image/knavi-icon.png"
 import tmapIcon from "../../image/tmap-icon.png"
-import { ReactComponent as LockIcon } from "../../image/lock-icon.svg"
-import { ReactComponent as UnlockIcon } from "../../image/unlock-icon.svg"
 
-const WEDDING_HALL_POSITION = [126.9594982, 37.4657134]
-// const BUS_STOP_POSITION = [126.957706, 37.465071]
-// const PARKING_LOT_POSITION = [126.960266, 37.465467]
+const WEDDING_HALL_POSITION: [number, number] = [104.8379652, 11.4980323]
+const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/oBg3LpBHkQmJzJJq7?g_st=ifm"
 
-const NMAP_PLACE_ID = 13321741
-const KMAP_PLACE_ID = 8634826
+// Set Mapbox token
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN || ""
 
-export const Map = () => {
-  return process.env.REACT_APP_NAVER_MAP_CLIENT_ID ? (
-    <NaverMap />
-  ) : (
-    <div>Map is not available</div>
+const MapboxMap: React.FC = () => {
+  const mapContainer = useRef<HTMLDivElement>(null)
+  const map = useRef<mapboxgl.Map | null>(null)
+
+  // Initialize the map
+  useEffect(() => {
+    if (!mapContainer.current) return
+
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: WEDDING_HALL_POSITION,
+      zoom: 17,
+    })
+
+    // Add marker
+    new mapboxgl.Marker().setLngLat(WEDDING_HALL_POSITION).addTo(map.current)
+
+    return () => {
+      map.current?.remove()
+    }
+  }, []) // Empty dependency array ensures this runs once
+
+  return (
+    <div className="map-wrapper" style={{ width: "100%", height: "400px" }}>
+      <div ref={mapContainer} style={{ width: "100%", height: "100%" }} />
+    </div>
   )
 }
 
-const NaverMap = () => {
-  const naver = useNaver()
-  const kakao = useKakao()
-  const ref = useRef<HTMLDivElement>(null)
-  const [locked, setLocked] = useState(true)
-  const [showLockMessage, setShowLockMessage] = useState(false)
-  const lockMessageTimeout = useRef<NodeJS.Timeout>()
-
-  const checkDevice = () => {
+const NavigationButtons: React.FC = () => {
+  const checkDevice = (): "ios" | "android" | "other" => {
     const userAgent = window.navigator.userAgent
-    if (userAgent.match(/(iPhone|iPod|iPad)/)) {
+    if (/iPhone|iPod|iPad/i.test(userAgent)) {
       return "ios"
-    } else if (userAgent.match(/(Android)/)) {
+    } else if (/Android/i.test(userAgent)) {
       return "android"
     } else {
       return "other"
     }
   }
 
-  useEffect(() => {
-    if (naver) {
-      const map = new naver.maps.Map(ref.current, {
-        center: WEDDING_HALL_POSITION,
-        zoom: 17,
-      })
+  const handleGoogleMaps = () => {
+    window.open(GOOGLE_MAPS_URL, "_blank")
+  }
 
-      new naver.maps.Marker({ position: WEDDING_HALL_POSITION, map })
-      // new naver.maps.Marker({ position: BUS_STOP_POSITION, map })
-      // new naver.maps.Marker({ position: PARKING_LOT_POSITION, map })
+  return (
+    <div
+      className="navigation"
+      style={{
+        display: "flex",
+        gap: "10px",
+        marginTop: "10px",
+      }}
+    >
+      <button
+        onClick={handleGoogleMaps}
+        style={buttonStyle}
+        aria-label="បើកមើលទីតាំងក្នុង Google Maps"
+      >
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBmaWxsPSIjMUE3M0U4IiBkPSJNNDQuNSAyMC4yNWMwLTEuMzEtLjExLTIuNTctLjMyLTMuNzlIMjR2Ny4xNWgxMS41M2MtLjUyIDIuNzUtMi4xIDUuMTEtNC40NyA2LjY3djUuNTJoNy4yYzQuMjMtMy44OCA2LjY3LTkuNiA2LjY3LTE2LjA4eiIvPjxwYXRoIGZpbGw9IiMzNEE4NTMiIGQ9Ik0yNCA0NGM2LjAyIDAgMTEuMDctMS45NyAxNC43NS01LjI3bC03LjItNS41OGMtMi4wMiAxLjM0LTQuNTggMi4xMy03LjU1IDIuMTMtNS44MSAwLTEwLjcyLTMuOTItMTIuNDgtOS4ySDQuNTF2NS43N0M4LjEyIDM5LjMgMTUuNTMgNDQgMjQgNDR6Ii8+PHBhdGggZmlsbD0iI0ZCQkMwNSIgZD0iTTExLjUyIDI2LjI4Yy0uNDQtMS4zNi0uNjktMi44MS0uNjktNC4yOHMuMjUtMi45Mi42OS00LjI4VjExLjk1SDQuNTFDMi45MSAxNS43NyAyIDE5Ljc5IDIgMjRzLjkxIDguMjMgMi41MSAxMi4wNWw5LjAxLTUuNzd6Ii8+PHBhdGggZmlsbD0iI0VBNDMzNSIgZD0iTTI0IDEwLjcxYzMuMjggMCA2LjIyIDEuMTMgOC41MyAzLjMzbDYuNCAtNi40QzM0Ljk0IDMuNyAyOS45MyAyIDI0IDIgMTUuNTMgMiA4LjEyIDYuNyA0LjUxIDExLjk1bDkuMDEgNS43N2MxLjc2LTUuMjggNi42Ny05LjIgMTIuNDgtOS4yeiIvPjwvc3ZnPg=="
+          alt="Google Maps Icon"
+          style={{ width: "24px", height: "24px", marginRight: "8px" }}
+        />
+        Google Maps
+      </button>
+    </div>
+  )
+}
 
-      return () => {
-        map.destroy()
-      }
-    }
-  }, [naver])
+// Define a common button style to avoid repetition
+const buttonStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "8px 12px",
+  backgroundColor: "#f0f0f0",
+  border: "1px solid #c2a11d",
+  borderRadius: "4px",
+  cursor: "pointer",
+  fontSize: "14px",
+  color: "#c2a11d",
+  fontWeight: "bold",
+  transition: "background-color 0.3s ease",
+}
+
+export const Map: React.FC = () => {
+  if (!mapboxgl.accessToken) {
+    return <div>Map is not available - Mapbox token is required</div>
+  }
 
   return (
     <>
-      <div className="map-wrapper">
-        {locked && (
-          <div
-            className="lock"
-            onTouchStart={() => {
-              setShowLockMessage(true)
-              clearTimeout(lockMessageTimeout.current)
-              lockMessageTimeout.current = setTimeout(
-                () => setShowLockMessage(false),
-                3000,
-              )
-            }}
-            onMouseDown={() => {
-              setShowLockMessage(true)
-              clearTimeout(lockMessageTimeout.current)
-              lockMessageTimeout.current = setTimeout(
-                () => setShowLockMessage(false),
-                3000,
-              )
-            }}
-          >
-            {showLockMessage && (
-              <div className="lock-message">
-                <LockIcon /> 자물쇠 버튼을 눌러
-                <br />
-                터치 잠금 해제 후 확대 및 이동해 주세요.
-              </div>
-            )}
-          </div>
-        )}
-        <button
-          className={"lock-button" + (locked ? "" : " unlocked")}
-          onClick={() => {
-            clearTimeout(lockMessageTimeout.current)
-            setShowLockMessage(false)
-            setLocked((locked) => !locked)
-          }}
-        >
-          {locked ? <LockIcon /> : <UnlockIcon />}
-        </button>
-        <div className="map-inner" ref={ref}></div>
-      </div>
-      <div className="navigation">
-        <button
-          onClick={() => {
-            switch (checkDevice()) {
-              case "ios":
-              case "android":
-                window.open(`nmap://place?id=${NMAP_PLACE_ID}`, "_self")
-                break
-              default:
-                window.open(
-                  `https://map.naver.com/p/entry/place/${NMAP_PLACE_ID}`,
-                  "_blank",
-                )
-                break
-            }
-          }}
-        >
-          <img src={nmapIcon} alt="naver-map-icon" />
-          네이버 지도
-        </button>
-        <button
-          onClick={() => {
-            switch (checkDevice()) {
-              case "ios":
-              case "android":
-                if (kakao)
-                  kakao.Navi.start({
-                    name: "서울대학교 연구공원 웨딩홀",
-                    x: WEDDING_HALL_POSITION[0],
-                    y: WEDDING_HALL_POSITION[1],
-                    coordType: "wgs84",
-                  })
-                break
-              default:
-                window.open(
-                  `https://map.kakao.com/link/map/${KMAP_PLACE_ID}`,
-                  "_blank",
-                )
-                break
-            }
-          }}
-        >
-          <img src={knaviIcon} alt="kakao-navi-icon" />
-          카카오 내비
-        </button>
-        <button
-          onClick={() => {
-            switch (checkDevice()) {
-              case "ios":
-              case "android":
-                const params = new URLSearchParams({
-                  goalx: WEDDING_HALL_POSITION[0].toString(),
-                  goaly: WEDDING_HALL_POSITION[1].toString(),
-                  goalName: "서울대학교 연구공원 웨딩홀",
-                })
-                window.open(`tmap://route?${params.toString()}`, "_self")
-                break
-              default:
-                alert("모바일에서 확인하실 수 있습니다.")
-                break
-            }
-          }}
-        >
-          <img src={tmapIcon} alt="t-map-icon" />
-          티맵
-        </button>
-      </div>
+      <MapboxMap />
+      <NavigationButtons />
     </>
   )
 }
