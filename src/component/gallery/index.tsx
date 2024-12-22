@@ -312,7 +312,7 @@ export const Gallery = () => {
 
   return (
     <LazyDiv className="card gallery">
-      <h2 className="english">រិចិត្យសាល</h2>
+      <h2 className="english">វិចិត្រសាល</h2>
       <div className="carousel-wrapper">
         <div
           className="carousel"
