@@ -204,22 +204,22 @@ div.break {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 20px;
+  padding: clamp(10px, 2vw, 20px);
 }
 
 .envelope {
   position: relative;
-  width: min(90%, 500px);
+  width: clamp(280px, 80vw, 500px);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1rem, 3vh, 2rem);
   perspective: 1500px;
 
   &-flap {
@@ -231,8 +231,8 @@ div.break {
     transform-origin: top;
     transform-style: preserve-3d;
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid #dcb107;
-    border-radius: 12px;
+    border: clamp(1px, 0.2vw, 2px) solid #dcb107;
+    border-radius: clamp(8px, 1vw, 12px);
 
     &::after {
       content: '';
@@ -242,14 +242,13 @@ div.break {
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 12px;
+      border-radius: clamp(8px, 1vw, 12px);
     }
   }
 
   &-content {
     position: relative;
     width: 100%;
-    height: 100%;
     transform-style: preserve-3d;
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -266,10 +265,10 @@ div.break {
 
 .invitation-image {
   width: 100%;
-  height: auto;
+  height: auto; // This ensures the aspect ratio is maintained
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: clamp(8px, 1vw, 12px);
+  box-shadow: 0 clamp(2px, 0.4vw, 4px) clamp(10px, 2vw, 20px) rgba(0, 0, 0, 0.15);
 
   &.second-image {
     animation: fadeInSecondImage 2s ease-in-out;
@@ -288,37 +287,37 @@ div.break {
 }
 
 .load-button {
-  padding: 15px 30px;
-  font-size: 24px;
+  padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
+  font-size: clamp(18px, 2.5vw, 24px);
   font-family: "Moulpali", sans-serif;
   font-weight: bold;
   color: #dcb107;
   background-color: #ffffff;
-  border: 2px solid #dcb107;
-  border-radius: 12px;
+  border: clamp(1px, 0.2vw, 2px) solid #dcb107;
+  border-radius: clamp(8px, 1vw, 12px);
   cursor: pointer;
   z-index: 2;
-  margin-top: 20px;
+  margin-top: clamp(15px, 2vh, 20px);
   transition: all 0.3s ease;
-}
 
-.load-button:hover,
-.load-button:active {
-  background-color: #dcb107;
-  color: #ffffff;
-  transform: scale(1.1);
+  &:hover,
+  &:active {
+    background-color: #dcb107;
+    color: #ffffff;
+    transform: scale(1.1);
+  }
 }
 
 .card-view {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: 20px;
+  padding: clamp(15px, 2vw, 20px);
   animation: fadeIn 1s ease-in;
 }
 
 .card-group {
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1rem, 3vh, 2rem);
 }
 
 @keyframes fadeIn {
@@ -330,23 +329,52 @@ div.break {
   }
 }
 
-/* Media Queries */
-@media (min-width: 768px) {
+/* Laptop Screens */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
   .envelope {
-    width: min(70%, 600px);
+    width: clamp(280px, 60vw, 450px);
+    margin-bottom: 1.5rem;
   }
-  .card-view {
-    padding: 40px;
+  
+  .load-button {
+    font-size: clamp(16px, 2vw, 20px);
+    padding: 12px 24px;
   }
 }
 
-/* Mobile Optimization */
-@media screen and (max-width: 480px) {
+/* Large Laptop Screens */
+@media screen and (min-width: 1367px) {
+  .envelope {
+    width: clamp(350px, 50vw, 500px);
+    margin-bottom: 2rem;
+  }
+}
+
+/* Tablet/Small Laptop */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .envelope {
+    width: clamp(280px, 70vw, 450px);
+  }
+  
+  .card-view {
+    padding: clamp(20px, 3vw, 40px);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
   .envelope {
     width: 95%;
+    margin-bottom: 1rem;
   }
+  
   .loading-screen {
     padding: 10px;
+  }
+  
+  .load-button {
+    padding: 10px 20px;
+    font-size: 18px;
   }
 }
 
