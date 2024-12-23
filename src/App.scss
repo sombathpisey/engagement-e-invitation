@@ -210,16 +210,16 @@ div.break {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: clamp(10px, 2vw, 20px);
+  padding: min(2vh, 20px); // Adjust padding based on viewport height
 }
 
 .envelope {
   position: relative;
-  width: clamp(280px, 80vw, 500px);
+  width: min(90%, min(500px, 45vh)); // Limit width relative to height for shorter screens
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: clamp(1rem, 3vh, 2rem);
+  margin-bottom: min(2vh, 2rem); // Smaller margin for shorter heights
   perspective: 1500px;
 
   &-flap {
@@ -231,8 +231,8 @@ div.break {
     transform-origin: top;
     transform-style: preserve-3d;
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border: clamp(1px, 0.2vw, 2px) solid #dcb107;
-    border-radius: clamp(8px, 1vw, 12px);
+    border: 2px solid #dcb107;
+    border-radius: 12px;
 
     &::after {
       content: '';
@@ -242,7 +242,7 @@ div.break {
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: clamp(8px, 1vw, 12px);
+      border-radius: 12px;
     }
   }
 
@@ -265,10 +265,11 @@ div.break {
 
 .invitation-image {
   width: 100%;
-  height: auto; // This ensures the aspect ratio is maintained
+  height: auto;
+  max-height: 70vh; // Prevent image from being too tall
   display: block;
-  border-radius: clamp(8px, 1vw, 12px);
-  box-shadow: 0 clamp(2px, 0.4vw, 4px) clamp(10px, 2vw, 20px) rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
   &.second-image {
     animation: fadeInSecondImage 2s ease-in-out;
@@ -287,17 +288,17 @@ div.break {
 }
 
 .load-button {
-  padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
-  font-size: clamp(18px, 2.5vw, 24px);
+  padding: min(2vh, 15px) min(4vh, 30px);
+  font-size: min(3vh, 24px);
   font-family: "Moulpali", sans-serif;
   font-weight: bold;
   color: #dcb107;
   background-color: #ffffff;
-  border: clamp(1px, 0.2vw, 2px) solid #dcb107;
-  border-radius: clamp(8px, 1vw, 12px);
+  border: 2px solid #dcb107;
+  border-radius: 12px;
   cursor: pointer;
   z-index: 2;
-  margin-top: clamp(15px, 2vh, 20px);
+  margin-top: min(2vh, 20px);
   transition: all 0.3s ease;
 
   &:hover,
@@ -312,12 +313,12 @@ div.break {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: clamp(15px, 2vw, 20px);
+  padding: 20px;
   animation: fadeIn 1s ease-in;
 }
 
 .card-group {
-  margin-bottom: clamp(1rem, 3vh, 2rem);
+  margin-bottom: 2rem;
 }
 
 @keyframes fadeIn {
@@ -329,39 +330,43 @@ div.break {
   }
 }
 
-/* Laptop Screens */
-@media screen and (min-width: 1024px) and (max-width: 1366px) {
+/* Wide screens with shorter height (like 1536x743) */
+@media screen and (min-width: 1400px) and (max-height: 800px) {
   .envelope {
-    width: clamp(280px, 60vw, 450px);
-    margin-bottom: 1.5rem;
+    width: min(85%, 40vh); // Limit width based on viewport height
+    margin-bottom: 1.5vh;
   }
-  
+
+  .invitation-image {
+    max-height: 65vh; // Slightly smaller max height
+  }
+
   .load-button {
-    font-size: clamp(16px, 2vw, 20px);
-    padding: 12px 24px;
+    padding: 1.5vh 3vh;
+    font-size: 2.5vh;
+    margin-top: 1.5vh;
+  }
+
+  .loading-screen {
+    padding: 1.5vh;
   }
 }
 
-/* Large Laptop Screens */
-@media screen and (min-width: 1367px) {
+/* Standard laptop screens */
+@media screen and (min-width: 1024px) and (min-height: 800px) {
   .envelope {
-    width: clamp(350px, 50vw, 500px);
-    margin-bottom: 2rem;
+    width: min(70%, 500px);
   }
 }
 
-/* Tablet/Small Laptop */
+/* Tablets and smaller laptops */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .envelope {
-    width: clamp(280px, 70vw, 450px);
-  }
-  
-  .card-view {
-    padding: clamp(20px, 3vw, 40px);
+    width: min(80%, 450px);
   }
 }
 
-/* Mobile */
+/* Mobile devices */
 @media screen and (max-width: 767px) {
   .envelope {
     width: 95%;
@@ -377,6 +382,7 @@ div.break {
     font-size: 18px;
   }
 }
+
 
 .map-wrapper {
   width: 100%;
