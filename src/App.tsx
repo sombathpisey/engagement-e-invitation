@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import "./App.scss"
 import { BGEffect } from "./component/bgEffect"
 import weddingCover from "./image/wedding_cover.png"
+import weddingCoverTwo from "./image/wedding_cover_two.jpeg"
 import { Cover } from "./component/cover"
 import { Invitation } from "./component/invitation"
 import { Calendar } from "./component/calendar"
@@ -12,17 +13,20 @@ import { LazyDiv } from "./component/lazyDiv"
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isOpening, setIsOpening] = useState(false)
-  const [isFading, setIsFading] = useState(false)
+  const [showSecondImage, setShowSecondImage] = useState(false)
 
   const handleOpenClick = () => {
     setIsOpening(true)
-    // Trigger the fade-in animation
+
+    // Start the envelope opening animation
     setTimeout(() => {
-      setIsFading(true)
+      // Switch to second image
+      setShowSecondImage(true)
+      // Load main content after showing second image
       setTimeout(() => {
         setIsLoaded(true)
-      }, 1000) // Match the duration of the fade-in animation
-    }, 2000) // Wait for the envelope animation to complete
+      }, 2000) // Show second image for 2 seconds
+    }, 2000) // Wait for envelope animation
   }
 
   return (
@@ -34,9 +38,9 @@ const App: React.FC = () => {
             <div className="envelope-flap" />
             <div className="envelope-content">
               <img
-                src={weddingCover}
+                src={showSecondImage ? weddingCoverTwo : weddingCover}
                 alt="Wedding Invitation"
-                className={`invitation-image ${isFading ? "fade-in" : ""}`}
+                className={`invitation-image ${showSecondImage ? "second-image" : ""}`}
               />
             </div>
           </div>
@@ -56,12 +60,10 @@ const App: React.FC = () => {
             <Cover />
             <Invitation />
           </LazyDiv>
-
           <LazyDiv className="card-group">
             <Calendar />
             <Gallery />
           </LazyDiv>
-
           <LazyDiv className="card-group">
             <Location />
           </LazyDiv>
