@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./App.scss"
 import { BGEffect } from "./component/bgEffect"
-import weddingCover from "./image/wedding_cover.jpeg"
+import weddingCover from "./image/wedding_cover.jpg"
 import { Cover } from "./component/cover"
 import { Invitation } from "./component/invitation"
 import { Calendar } from "./component/calendar"
