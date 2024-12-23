@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/engagement-e-invitation/static/css/main.513eba17.css",
+    "main.css": "/engagement-e-invitation/static/css/main.9f2f7a5a.css",
     "main.js": "/engagement-e-invitation/static/js/main.7447b790.js",
     "static/js/453.40063271.chunk.js": "/engagement-e-invitation/static/js/453.40063271.chunk.js",
     "static/media/wedding_cover.png": "/engagement-e-invitation/static/media/wedding_cover.d759315ab83265cadbe9.png",
@@ -23,12 +23,12 @@
     "static/media/9.webp": "/engagement-e-invitation/static/media/9.27a79ab3b0fe901c9391.webp",
     "index.html": "/engagement-e-invitation/index.html",
     "static/media/angle-left-sm.svg": "/engagement-e-invitation/static/media/angle-left-sm.658033af14cebbe2d43a80f11c7358ee.svg",
-    "main.513eba17.css.map": "/engagement-e-invitation/static/css/main.513eba17.css.map",
+    "main.9f2f7a5a.css.map": "/engagement-e-invitation/static/css/main.9f2f7a5a.css.map",
     "main.7447b790.js.map": "/engagement-e-invitation/static/js/main.7447b790.js.map",
     "453.40063271.chunk.js.map": "/engagement-e-invitation/static/js/453.40063271.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.513eba17.css",
+    "static/css/main.9f2f7a5a.css",
     "static/js/main.7447b790.js"
   ]
 }
